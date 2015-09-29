@@ -79,10 +79,6 @@ if __name__ == '__main__':
         parser.add_option('-i', '--input',   action='store',  type='string', default="input.bed", dest="input", help="input bed file")
         (options, args) = parser.parse_args()
 
-        if options.version:
-          print VERSION
-          os._exit(0)
-
         # check if there are all arguments
         if len(args) != 0:
             parser.error ('Incorrect number of user-specified arguments')
