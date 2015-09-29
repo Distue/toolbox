@@ -20,7 +20,7 @@ DESCRIPTION
                           BED file for input
                           default: input.bed
 
-    [-v, --version]
+    [--version]
                           print the version
 
     [-h, --help]          display help message with all parameters and options
@@ -74,11 +74,14 @@ def notEmpty(filename):
 if __name__ == '__main__':
     try:
         # get parser and add arguments
-        parser = optparse.OptionParser(formatter=optparse.TitledHelpFormatter(), usage=globals()['__doc__'], version="%prog 1.0")
+        parser = optparse.OptionParser(formatter=optparse.TitledHelpFormatter(), usage=globals()['__doc__'], version="%prog " + VERSION)
 
-        parser.add_option('-i', '--input', action='store',  type='string', default="input.bed", dest="input", help="input bed file")
-        parser.add_option('-v', '--version', action='store_true', default=False,  dest='primary', help='set if you want to use only primary positions of multimapping reads')
+        parser.add_option('-i', '--input',   action='store',  type='string', default="input.bed", dest="input", help="input bed file")
         (options, args) = parser.parse_args()
+
+        if options.version:
+          print VERSION
+          os._exit(0)
 
         # check if there are all arguments
         if len(args) != 0:
